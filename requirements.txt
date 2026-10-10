@@ -1,0 +1,22 @@
+# Core scientific Python
+numpy>=1.26,<3
+pandas>=2.0,<3
+scikit-learn>=1.3,<2
+matplotlib>=3.7,<4
+Pillow>=10,<13
+
+# Deep learning
+# Choose a torch/torchvision pair compatible with your OS/GPU if not using the versions below.
+torch>=2.2,<3
+torchvision>=0.17,<1
+
+# Data / notebooks
+jupyter>=1.0
+notebook>=7.0
+nbformat>=5.9
+
+# RSNA DICOM support
+pydicom>=2.4,<4
+
+# Testing
+pytest>=7.4,<9
