@@ -22,7 +22,6 @@ Image-level labels are created using this rule:
 - Otherwise, an image with `nopneumonia` annotations is labeled **No Pneumonia (0)**.
 - For mixed-category images, the image-level label is Pneumonia, and only `pneumonia` boxes are used as localization ground truth.
 
-The source annotation metadata indicates a Roboflow export and includes CC BY 4.0 license metadata. Check the upstream source's current attribution and redistribution terms before sharing the raw dataset. The raw image directory is excluded from Git by `.gitignore`, but is included in this local ZIP so you can run the project immediately.
 
 ## What this project runs
 
@@ -149,5 +148,5 @@ scripts/generate_final_artifacts.py  Generates fresh result tables and figures
 notebooks/              Master execution notebook
 demo/inference.py       Single-image inference demo
 tests/                  Automated correctness tests
-train/                  Local input dataset (ignored by Git)
+train/                  Local input dataset
 ```
