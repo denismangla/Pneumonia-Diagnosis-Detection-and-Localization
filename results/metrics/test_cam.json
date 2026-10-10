@@ -1,0 +1,468 @@
+{
+  "metrics": {
+    "accuracy": 0.6,
+    "balanced_accuracy": 0.5,
+    "precision": 0.6,
+    "recall": 1.0,
+    "recall_sensitivity": 1.0,
+    "specificity": 0.0,
+    "f1": 0.75,
+    "tn": 0,
+    "fp": 8,
+    "fn": 0,
+    "tp": 12,
+    "mean_iou": 0.021919416444019856,
+    "median_iou": 0.012305087708042672,
+    "nonzero_iou_rate": 0.55,
+    "cam_threshold": 0.7,
+    "localization_protocol": "greedy one-to-one IoU, per-image; empty GT or prediction scores 0"
+  },
+  "per_image": [
+    {
+      "image_id": "0",
+      "true_label": 1,
+      "predicted_label": 1,
+      "pneumonia_probability": 0.8127434253692627,
+      "ground_truth_boxes": [
+        [
+          272.0,
+          564.0,
+          409.24,
+          706.85
+        ],
+        [
+          680.0,
+          313.0,
+          774.91,
+          423.37
+        ]
+      ],
+      "predicted_boxes": [
+        [
+          288.0,
+          208.0,
+          800.0,
+          704.0
+        ]
+      ],
+      "IoU": 0.03307621926544869
+    },
+    {
+      "image_id": "8",
+      "true_label": 0,
+      "predicted_label": 1,
+      "pneumonia_probability": 0.5789744257926941,
+      "ground_truth_boxes": [],
+      "predicted_boxes": [
+        [
+          400.0,
+          336.0,
+          1024.0,
+          880.0
+        ]
+      ],
+      "IoU": 0.0
+    },
+    {
+      "image_id": "12",
+      "true_label": 1,
+      "predicted_label": 1,
+      "pneumonia_probability": 0.8180208802223206,
+      "ground_truth_boxes": [
+        [
+          694.0,
+          464.0,
+          835.01,
+          654.98
+        ]
+      ],
+      "predicted_boxes": [
+        [
+          272.0,
+          224.0,
+          800.0,
+          704.0
+        ]
+      ],
+      "IoU": 0.0778232997573165
+    },
+    {
+      "image_id": "18",
+      "true_label": 1,
+      "predicted_label": 1,
+      "pneumonia_probability": 0.6645408868789673,
+      "ground_truth_boxes": [
+        [
+          55.0,
+          460.0,
+          221.01,
+          872.12
+        ],
+        [
+          650.0,
+          568.0,
+          834.52,
+          832.6600000000001
+        ]
+      ],
+      "predicted_boxes": [
+        [
+          160.0,
+          400.0,
+          624.0,
+          1024.0
+        ]
+      ],
+      "IoU": 0.03777462661722083
+    },
+    {
+      "image_id": "36",
+      "true_label": 1,
+      "predicted_label": 1,
+      "pneumonia_probability": 0.7327333688735962,
+      "ground_truth_boxes": [
+        [
+          294.0,
+          402.0,
+          440.95,
+          540.94
+        ],
+        [
+          208.0,
+          592.0,
+          410.18,
+          690.38
+        ]
+      ],
+      "predicted_boxes": [
+        [
+          272.0,
+          432.0,
+          832.0,
+          1024.0
+        ]
+      ],
+      "IoU": 0.023827589799615106
+    },
+    {
+      "image_id": "49",
+      "true_label": 0,
+      "predicted_label": 1,
+      "pneumonia_probability": 0.5516843199729919,
+      "ground_truth_boxes": [],
+      "predicted_boxes": [
+        [
+          288.0,
+          224.0,
+          800.0,
+          736.0
+        ]
+      ],
+      "IoU": 0.0
+    },
+    {
+      "image_id": "58",
+      "true_label": 0,
+      "predicted_label": 1,
+      "pneumonia_probability": 0.6055173277854919,
+      "ground_truth_boxes": [],
+      "predicted_boxes": [
+        [
+          304.0,
+          448.0,
+          864.0,
+          1024.0
+        ]
+      ],
+      "IoU": 0.0
+    },
+    {
+      "image_id": "61",
+      "true_label": 1,
+      "predicted_label": 1,
+      "pneumonia_probability": 0.7246456146240234,
+      "ground_truth_boxes": [
+        [
+          176.0,
+          476.0,
+          320.09000000000003,
+          636.26
+        ],
+        [
+          601.0,
+          352.0,
+          765.22,
+          546.39
+        ]
+      ],
+      "predicted_boxes": [
+        [
+          224.0,
+          432.0,
+          768.0,
+          896.0
+        ]
+      ],
+      "IoU": 0.029601848044323663
+    },
+    {
+      "image_id": "67",
+      "true_label": 1,
+      "predicted_label": 1,
+      "pneumonia_probability": 0.8849073052406311,
+      "ground_truth_boxes": [
+        [
+          212.0,
+          842.0,
+          372.13,
+          992.27
+        ]
+      ],
+      "predicted_boxes": [
+        [
+          272.0,
+          304.0,
+          800.0,
+          800.0
+        ]
+      ],
+      "IoU": 0.0
+    },
+    {
+      "image_id": "71",
+      "true_label": 0,
+      "predicted_label": 1,
+      "pneumonia_probability": 0.5574098229408264,
+      "ground_truth_boxes": [],
+      "predicted_boxes": [
+        [
+          224.0,
+          352.0,
+          752.0,
+          832.0
+        ]
+      ],
+      "IoU": 0.0
+    },
+    {
+      "image_id": "90",
+      "true_label": 1,
+      "predicted_label": 1,
+      "pneumonia_probability": 0.654007613658905,
+      "ground_truth_boxes": [
+        [
+          154.0,
+          364.0,
+          318.68,
+          513.19
+        ]
+      ],
+      "predicted_boxes": [
+        [
+          224.0,
+          432.0,
+          752.0,
+          1024.0
+        ]
+      ],
+      "IoU": 0.023332503484364043
+    },
+    {
+      "image_id": "99",
+      "true_label": 1,
+      "predicted_label": 1,
+      "pneumonia_probability": 0.7765704393386841,
+      "ground_truth_boxes": [
+        [
+          208.0,
+          352.0,
+          372.36,
+          437.72
+        ]
+      ],
+      "predicted_boxes": [
+        [
+          272.0,
+          320.0,
+          800.0,
+          800.0
+        ]
+      ],
+      "IoU": 0.03322515522576947
+    },
+    {
+      "image_id": "107",
+      "true_label": 1,
+      "predicted_label": 1,
+      "pneumonia_probability": 0.5395259261131287,
+      "ground_truth_boxes": [
+        [
+          339.0,
+          547.0,
+          435.11,
+          868.39
+        ]
+      ],
+      "predicted_boxes": [
+        [
+          256.0,
+          416.0,
+          800.0,
+          1024.0
+        ]
+      ],
+      "IoU": 0.09338958766689243
+    },
+    {
+      "image_id": "136",
+      "true_label": 0,
+      "predicted_label": 1,
+      "pneumonia_probability": 0.7695435285568237,
+      "ground_truth_boxes": [],
+      "predicted_boxes": [
+        [
+          288.0,
+          240.0,
+          800.0,
+          752.0
+        ]
+      ],
+      "IoU": 0.0
+    },
+    {
+      "image_id": "143",
+      "true_label": 1,
+      "predicted_label": 1,
+      "pneumonia_probability": 0.8394590616226196,
+      "ground_truth_boxes": [
+        [
+          184.0,
+          470.0,
+          339.13,
+          745.3399999999999
+        ],
+        [
+          658.0,
+          466.0,
+          809.49,
+          639.66
+        ]
+      ],
+      "predicted_boxes": [
+        [
+          224.0,
+          288.0,
+          704.0,
+          800.0
+        ]
+      ],
+      "IoU": 0.06172732360336108
+    },
+    {
+      "image_id": "145",
+      "true_label": 1,
+      "predicted_label": 1,
+      "pneumonia_probability": 0.7596883773803711,
+      "ground_truth_boxes": [
+        [
+          198.0,
+          446.0,
+          399.8,
+          562.05
+        ],
+        [
+          754.0,
+          368.0,
+          900.63,
+          878.4300000000001
+        ]
+      ],
+      "predicted_boxes": [
+        [
+          272.0,
+          432.0,
+          832.0,
+          1024.0
+        ]
+      ],
+      "IoU": 0.02180366689727988
+    },
+    {
+      "image_id": "153",
+      "true_label": 0,
+      "predicted_label": 1,
+      "pneumonia_probability": 0.5342294573783875,
+      "ground_truth_boxes": [],
+      "predicted_boxes": [
+        [
+          256.0,
+          320.0,
+          800.0,
+          816.0
+        ]
+      ],
+      "IoU": 0.0
+    },
+    {
+      "image_id": "177",
+      "true_label": 1,
+      "predicted_label": 1,
+      "pneumonia_probability": 0.7935357689857483,
+      "ground_truth_boxes": [
+        [
+          153.0,
+          316.0,
+          299.78999999999996,
+          474.83000000000004
+        ],
+        [
+          638.0,
+          346.0,
+          759.52,
+          498.59000000000003
+        ]
+      ],
+      "predicted_boxes": [
+        [
+          224.0,
+          448.0,
+          816.0,
+          1024.0
+        ]
+      ],
+      "IoU": 0.0028065085188054644
+    },
+    {
+      "image_id": "182",
+      "true_label": 0,
+      "predicted_label": 1,
+      "pneumonia_probability": 0.5524783134460449,
+      "ground_truth_boxes": [],
+      "predicted_boxes": [
+        [
+          256.0,
+          384.0,
+          816.0,
+          896.0
+        ]
+      ],
+      "IoU": 0.0
+    },
+    {
+      "image_id": "187",
+      "true_label": 0,
+      "predicted_label": 1,
+      "pneumonia_probability": 0.6203016042709351,
+      "ground_truth_boxes": [],
+      "predicted_boxes": [
+        [
+          240.0,
+          432.0,
+          816.0,
+          1024.0
+        ]
+      ],
+      "IoU": 0.0
+    }
+  ]
+}

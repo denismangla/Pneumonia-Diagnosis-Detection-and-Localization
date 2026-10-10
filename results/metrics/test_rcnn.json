@@ -1,0 +1,327 @@
+{
+  "metrics": {
+    "accuracy": 0.4,
+    "balanced_accuracy": 0.5,
+    "precision": 0.0,
+    "recall": 0.0,
+    "recall_sensitivity": 0.0,
+    "specificity": 1.0,
+    "f1": 0.0,
+    "tn": 8,
+    "fp": 0,
+    "fn": 12,
+    "tp": 0,
+    "mean_iou": 0.0,
+    "median_iou": 0.0,
+    "nonzero_iou_rate": 0.0,
+    "localization_protocol": "greedy one-to-one IoU, per-image; empty GT or prediction scores 0"
+  },
+  "per_image": [
+    {
+      "image_id": "0",
+      "true_label": 1,
+      "predicted_label": 0,
+      "pneumonia_probability": 0.057291578501462936,
+      "ground_truth_boxes": [
+        [
+          272.0,
+          564.0,
+          409.239990234375,
+          706.8499755859375
+        ],
+        [
+          680.0,
+          313.0,
+          774.9099731445312,
+          423.3699951171875
+        ]
+      ],
+      "predicted_boxes": [],
+      "IoU": 0.0
+    },
+    {
+      "image_id": "8",
+      "true_label": 0,
+      "predicted_label": 0,
+      "pneumonia_probability": 0.05729706212878227,
+      "ground_truth_boxes": [],
+      "predicted_boxes": [],
+      "IoU": 0.0
+    },
+    {
+      "image_id": "12",
+      "true_label": 1,
+      "predicted_label": 0,
+      "pneumonia_probability": 0.05729621648788452,
+      "ground_truth_boxes": [
+        [
+          694.0,
+          464.0,
+          835.010009765625,
+          654.97998046875
+        ]
+      ],
+      "predicted_boxes": [],
+      "IoU": 0.0
+    },
+    {
+      "image_id": "18",
+      "true_label": 1,
+      "predicted_label": 0,
+      "pneumonia_probability": 0.05729376897215843,
+      "ground_truth_boxes": [
+        [
+          55.0,
+          460.0,
+          221.00999450683594,
+          872.1199951171875
+        ],
+        [
+          650.0,
+          568.0,
+          834.52001953125,
+          832.6599731445312
+        ]
+      ],
+      "predicted_boxes": [],
+      "IoU": 0.0
+    },
+    {
+      "image_id": "36",
+      "true_label": 1,
+      "predicted_label": 0,
+      "pneumonia_probability": 0.05730154737830162,
+      "ground_truth_boxes": [
+        [
+          294.0,
+          402.0,
+          440.95001220703125,
+          540.9400024414062
+        ],
+        [
+          208.0,
+          592.0,
+          410.17999267578125,
+          690.3800048828125
+        ]
+      ],
+      "predicted_boxes": [],
+      "IoU": 0.0
+    },
+    {
+      "image_id": "49",
+      "true_label": 0,
+      "predicted_label": 0,
+      "pneumonia_probability": 0.05729740113019943,
+      "ground_truth_boxes": [],
+      "predicted_boxes": [],
+      "IoU": 0.0
+    },
+    {
+      "image_id": "58",
+      "true_label": 0,
+      "predicted_label": 0,
+      "pneumonia_probability": 0.057294849306344986,
+      "ground_truth_boxes": [],
+      "predicted_boxes": [],
+      "IoU": 0.0
+    },
+    {
+      "image_id": "61",
+      "true_label": 1,
+      "predicted_label": 0,
+      "pneumonia_probability": 0.05728476867079735,
+      "ground_truth_boxes": [
+        [
+          176.0,
+          476.0,
+          320.0899963378906,
+          636.260009765625
+        ],
+        [
+          601.0,
+          352.0,
+          765.219970703125,
+          546.3900146484375
+        ]
+      ],
+      "predicted_boxes": [],
+      "IoU": 0.0
+    },
+    {
+      "image_id": "67",
+      "true_label": 1,
+      "predicted_label": 0,
+      "pneumonia_probability": 0.05728880688548088,
+      "ground_truth_boxes": [
+        [
+          212.0,
+          842.0,
+          372.1300048828125,
+          992.27001953125
+        ]
+      ],
+      "predicted_boxes": [],
+      "IoU": 0.0
+    },
+    {
+      "image_id": "71",
+      "true_label": 0,
+      "predicted_label": 0,
+      "pneumonia_probability": 0.05729523301124573,
+      "ground_truth_boxes": [],
+      "predicted_boxes": [],
+      "IoU": 0.0
+    },
+    {
+      "image_id": "90",
+      "true_label": 1,
+      "predicted_label": 0,
+      "pneumonia_probability": 0.05729662626981735,
+      "ground_truth_boxes": [
+        [
+          154.0,
+          364.0,
+          318.67999267578125,
+          513.1900024414062
+        ]
+      ],
+      "predicted_boxes": [],
+      "IoU": 0.0
+    },
+    {
+      "image_id": "99",
+      "true_label": 1,
+      "predicted_label": 0,
+      "pneumonia_probability": 0.05728679895401001,
+      "ground_truth_boxes": [
+        [
+          208.0,
+          352.0,
+          372.3599853515625,
+          437.7200012207031
+        ]
+      ],
+      "predicted_boxes": [],
+      "IoU": 0.0
+    },
+    {
+      "image_id": "107",
+      "true_label": 1,
+      "predicted_label": 0,
+      "pneumonia_probability": 0.05729961395263672,
+      "ground_truth_boxes": [
+        [
+          339.0,
+          547.0,
+          435.1099853515625,
+          868.3900146484375
+        ]
+      ],
+      "predicted_boxes": [],
+      "IoU": 0.0
+    },
+    {
+      "image_id": "136",
+      "true_label": 0,
+      "predicted_label": 0,
+      "pneumonia_probability": 0.057289719581604004,
+      "ground_truth_boxes": [],
+      "predicted_boxes": [],
+      "IoU": 0.0
+    },
+    {
+      "image_id": "143",
+      "true_label": 1,
+      "predicted_label": 0,
+      "pneumonia_probability": 0.05730278417468071,
+      "ground_truth_boxes": [
+        [
+          184.0,
+          470.0,
+          339.1300048828125,
+          745.3400268554688
+        ],
+        [
+          658.0,
+          466.0,
+          809.489990234375,
+          639.6599731445312
+        ]
+      ],
+      "predicted_boxes": [],
+      "IoU": 0.0
+    },
+    {
+      "image_id": "145",
+      "true_label": 1,
+      "predicted_label": 0,
+      "pneumonia_probability": 0.05729824677109718,
+      "ground_truth_boxes": [
+        [
+          198.0,
+          446.0,
+          399.79998779296875,
+          562.0499877929688
+        ],
+        [
+          754.0,
+          368.0,
+          900.6300048828125,
+          878.4299926757812
+        ]
+      ],
+      "predicted_boxes": [],
+      "IoU": 0.0
+    },
+    {
+      "image_id": "153",
+      "true_label": 0,
+      "predicted_label": 0,
+      "pneumonia_probability": 0.05731130763888359,
+      "ground_truth_boxes": [],
+      "predicted_boxes": [],
+      "IoU": 0.0
+    },
+    {
+      "image_id": "177",
+      "true_label": 1,
+      "predicted_label": 0,
+      "pneumonia_probability": 0.057291578501462936,
+      "ground_truth_boxes": [
+        [
+          153.0,
+          316.0,
+          299.7900085449219,
+          474.8299865722656
+        ],
+        [
+          638.0,
+          346.0,
+          759.52001953125,
+          498.5899963378906
+        ]
+      ],
+      "predicted_boxes": [],
+      "IoU": 0.0
+    },
+    {
+      "image_id": "182",
+      "true_label": 0,
+      "predicted_label": 0,
+      "pneumonia_probability": 0.057301778346300125,
+      "ground_truth_boxes": [],
+      "predicted_boxes": [],
+      "IoU": 0.0
+    },
+    {
+      "image_id": "187",
+      "true_label": 0,
+      "predicted_label": 0,
+      "pneumonia_probability": 0.05730275809764862,
+      "ground_truth_boxes": [],
+      "predicted_boxes": [],
+      "IoU": 0.0
+    }
+  ]
+}

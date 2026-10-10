@@ -1,0 +1,14 @@
+{
+  "annotation_file": "C:\\Users\\Dell\\Documents\\Pneumonia-Diagnosis-Detection-and-Localization\\train\\_annotations.coco.json",
+  "image_count": 200,
+  "annotation_count": 410,
+  "pneumonia_annotations": 197,
+  "nopneumonia_annotations": 213,
+  "pneumonia_images": 120,
+  "nopneumonia_images": 80,
+  "images_with_both_categories": 52,
+  "unknown_images": 0,
+  "clipped_boxes": 1,
+  "invalid_boxes": 0,
+  "missing_files": 0
+}

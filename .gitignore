@@ -13,7 +13,6 @@ env/
 train/
 data/splits/
 models/
-results/
 
 # OS/editor files
 .DS_Store

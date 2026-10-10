@@ -1,0 +1,71 @@
+{
+  "dataset": {
+    "images": 200,
+    "train": 140,
+    "validation": 40,
+    "test": 20,
+    "pneumonia_images": 120,
+    "no_pneumonia_images": 80
+  },
+  "classification_and_localization": [
+    {
+      "model": "Logistic Regression",
+      "accuracy": 0.65,
+      "balanced_accuracy": 0.6458333333333333,
+      "sensitivity": 0.6666666666666666,
+      "specificity": 0.625,
+      "f1": 0.6956521739130435,
+      "mean_iou": NaN
+    },
+    {
+      "model": "SVM",
+      "accuracy": 0.7,
+      "balanced_accuracy": 0.7083333333333333,
+      "sensitivity": 0.6666666666666666,
+      "specificity": 0.75,
+      "f1": 0.7272727272727273,
+      "mean_iou": NaN
+    },
+    {
+      "model": "Random Forest",
+      "accuracy": 0.65,
+      "balanced_accuracy": 0.5625,
+      "sensitivity": 1.0,
+      "specificity": 0.125,
+      "f1": 0.7741935483870968,
+      "mean_iou": NaN
+    },
+    {
+      "model": "CNN + CAM",
+      "accuracy": 0.6,
+      "balanced_accuracy": 0.5,
+      "sensitivity": 1.0,
+      "specificity": 0.0,
+      "f1": 0.75,
+      "mean_iou": 0.021919416444019856
+    },
+    {
+      "model": "Faster R-CNN",
+      "accuracy": 0.4,
+      "balanced_accuracy": 0.5,
+      "sensitivity": 0.0,
+      "specificity": 1.0,
+      "f1": 0.0,
+      "mean_iou": 0.0
+    }
+  ],
+  "cam_positive_only_iou": {
+    "mean_iou": 0.0365323607400331,
+    "median_iou": 0.031339033654886175
+  },
+  "rcnn_positive_only_iou": {
+    "mean_iou": 0.0,
+    "median_iou": 0.0
+  },
+  "cam_threshold": 0.7,
+  "notes": [
+    "Results are measured on a 20-image held-out test split.",
+    "The dataset is a small educational COCO export, not the full RSNA dataset.",
+    "The weakly supervised CAM model uses image-level labels only for training; boxes are used for evaluation."
+  ]
+}

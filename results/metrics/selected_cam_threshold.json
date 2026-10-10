@@ -1,0 +1,26 @@
+{
+  "selected_threshold": 0.7,
+  "candidates": [
+    {
+      "threshold": 0.2,
+      "mean_iou": 0.022247156642256627,
+      "median_iou": 0.02201690798777122,
+      "nonzero_iou_rate": 1.0,
+      "positive_validation_images": 24
+    },
+    {
+      "threshold": 0.45,
+      "mean_iou": 0.032340202990701734,
+      "median_iou": 0.028755106464304084,
+      "nonzero_iou_rate": 1.0,
+      "positive_validation_images": 24
+    },
+    {
+      "threshold": 0.7,
+      "mean_iou": 0.04058799032535378,
+      "median_iou": 0.033973668362122594,
+      "nonzero_iou_rate": 0.9583333333333334,
+      "positive_validation_images": 24
+    }
+  ]
+}
