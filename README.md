@@ -101,7 +101,7 @@ python scripts/run_project.py --evaluate
 python scripts/run_project.py --generate-results
 ```
 
-Training the CNN and Faster R-CNN can take a while, especially on CPU. `--all` trains models from scratch; it does not download pretrained project checkpoints.
+Training the CNN and Faster R-CNN can take a while, especially on CPU. `--all` trains the project models from scratch, except that the Faster R-CNN backbone starts from ImageNet-pretrained weights, which are downloaded automatically on the first run (internet required).
 
 ## Where fresh outputs will be written
 

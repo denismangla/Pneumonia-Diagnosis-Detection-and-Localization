@@ -50,11 +50,12 @@ def detection_collate(batch):
 def build_faster_rcnn(image_size: int = 128):
     try:
         from torchvision.models.detection import fasterrcnn_mobilenet_v3_large_320_fpn
+        from torchvision.models import MobileNet_V3_Large_Weights
     except ImportError as exc:
         raise ImportError("Installed torchvision does not expose a compatible Faster R-CNN builder.") from exc
     model = fasterrcnn_mobilenet_v3_large_320_fpn(
         weights=None,
-        weights_backbone=None,
+        weights_backbone=MobileNet_V3_Large_Weights.DEFAULT,
         num_classes=2,
         min_size=(image_size,),
         max_size=image_size,
@@ -62,7 +63,7 @@ def build_faster_rcnn(image_size: int = 128):
     return model
 
 
-def train_faster_rcnn(model, loader: DataLoader, val_loader: DataLoader, device: torch.device, output_path: str | Path, epochs: int = 10, lr: float = 1e-4, score_threshold: float = 0.4) -> dict[str, list[float]]:
+def train_faster_rcnn(model, loader: DataLoader, val_loader: DataLoader, device: torch.device, output_path: str | Path, epochs: int = 10, lr: float = 1e-4, score_threshold: float = 0.1) -> dict[str, list[float]]:
     model.to(device)
     optimizer = torch.optim.AdamW(model.parameters(), lr=lr)
     history = {"train_loss": [], "val_iou": []}
@@ -89,7 +90,7 @@ def train_faster_rcnn(model, loader: DataLoader, val_loader: DataLoader, device:
         history["train_loss"].append(mean_loss)
         history["val_iou"].append(val_iou)
         print(f"R-CNN epoch {epoch + 1:02d}: train_loss={mean_loss:.4f} val_mean_iou={val_iou:.4f}")
-        if val_iou > best_val_iou:
+        if val_iou >= best_val_iou:
             best_val_iou = val_iou
             Path(output_path).parent.mkdir(parents=True, exist_ok=True)
             torch.save({"model_state": model.state_dict(), "epoch": epoch, "best_val_iou": val_iou}, output_path)
@@ -105,7 +106,7 @@ def load_rcnn_checkpoint(model, path: str | Path, device: torch.device):
     return model.to(device).eval()
 
 
-def predict_boxes(model, image_tensor: torch.Tensor, device: torch.device, score_threshold: float = 0.4) -> list[list[float]]:
+def predict_boxes(model, image_tensor: torch.Tensor, device: torch.device, score_threshold: float = 0.1) -> list[list[float]]:
     boxes, _ = predict_boxes_and_probability(
         model, image_tensor, device, score_threshold=score_threshold
     )
@@ -116,7 +117,7 @@ def predict_boxes_and_probability(
     model,
     image_tensor: torch.Tensor,
     device: torch.device,
-    score_threshold: float = 0.4,
+    score_threshold: float = 0.1,
 ) -> tuple[list[list[float]], float]:
     model.eval()
     with torch.no_grad():
@@ -130,7 +131,7 @@ def predict_boxes_and_probability(
     return result["boxes"].detach().cpu().numpy()[keep].tolist(), probability
 
 
-def evaluate_rcnn(model, loader: DataLoader, device: torch.device, score_threshold: float = 0.4) -> dict:
+def evaluate_rcnn(model, loader: DataLoader, device: torch.device, score_threshold: float = 0.1) -> dict:
     model.eval()
     per_image = []
     for images, targets in loader:

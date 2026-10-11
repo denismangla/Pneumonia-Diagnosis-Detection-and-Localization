@@ -43,8 +43,8 @@ class ProjectConfig:
     baseline_use_pca: bool = True
     baseline_pca_components: int = 128
     baseline_pca_batch_size: int = 256
-    rcnn_image_size: tuple[int, int] = (128, 128)
-    rcnn_epochs: int = 5
+    rcnn_image_size: tuple[int, int] = (320, 320)
+    rcnn_epochs: int = 15
     rcnn_batch_size: int = 4
     seed: int = 42
 
