@@ -1,12 +1,15 @@
-# Weakly Supervised Pneumonia Localization from Chest X-Rays
+# Pneumonia Detection & Localization from Chest X-Rays
 
-This repository implements an educational computer-vision pipeline that classifies chest X-ray images as **Pneumonia** or **No Pneumonia**, then uses Class Activation Mapping (CAM) and DFS clustering to propose regions that contributed to a Pneumonia prediction. A supervised Faster R-CNN detector is included as a localization benchmark.
+**Machine Learning Mini-Project**  
+**Team:** Denis Mangla (SRN: PES2UG24CS151) · Farheen Akhtar (SRN: PES2UG24CS164)
 
-> **Academic use only.** This project is not clinically validated and must not be used for medical diagnosis or treatment decisions.
+This project compares machine-learning methods for classifying chest X-ray images as **Pneumonia** or **No Pneumonia** and explores approximate localization of pneumonia regions. It includes classical classification baselines, a CNN with Class Activation Mapping (CAM), and a Faster R-CNN object detector.
 
-## Dataset
+> **Educational use only.** This project is not clinically validated and must not be used for medical diagnosis or treatment decisions.
 
-The supplied dataset is a 200-image COCO-format export located in `train/`:
+## 1. Dataset
+
+The dataset is a 200-image COCO-format export. The dataset itself is not included in this repository ZIP and must be obtained separately. Place the extracted files in `train/` so the structure looks like this:
 
 ```text
 train/
@@ -14,82 +17,81 @@ train/
 └── _annotations.coco.json
 ```
 
-The JSON is the source of truth; a CSV annotation file is not required. It contains image metadata, category names, and COCO bounding boxes `[x, y, width, height]`.
+The COCO JSON must contain `images`, `annotations`, and `categories` arrays. The expected category names are `pneumonia` and `nopneumonia` (case-insensitive). Bounding boxes use COCO format `[x, y, width, height]`.
 
-Image-level labels are created using this rule:
+Image-level labels are derived from the supplied annotations:
 
-- An image with at least one `pneumonia` annotation is labeled **Pneumonia (1)**.
-- Otherwise, an image with `nopneumonia` annotations is labeled **No Pneumonia (0)**.
-- For mixed-category images, the image-level label is Pneumonia, and only `pneumonia` boxes are used as localization ground truth.
+- An image with at least one pneumonia annotation is labelled **Pneumonia (1)**.
+- Otherwise, an image with a `nopneumonia` annotation is labelled **No Pneumonia (0)**.
+- For images containing both categories, the image-level label is Pneumonia.
+- Only pneumonia boxes are used as localization ground truth.
 
+The dataset snapshot used for the saved results contains 200 images: 120 pneumonia-positive and 80 no-pneumonia images. The standard image-level split is 70% training, 20% validation, and 10% test (140/40/20), using seed 42 by default.
 
-## What this project runs
+## 2. Methods
 
-```text
-COCO annotations + X-ray images
-             ↓
-    data validation and split
-             ↓
-   ┌─────────┴───────────┐
-   ↓                     ↓
-LR / SVM / RF          CNN classifier
-                         ↓
-                        CAM
-                         ↓
-                 threshold + DFS
-                         ↓
-                 predicted boxes
-                         ↓
-                        IoU
+The pipeline includes:
 
-Parallel localization benchmark: Faster R-CNN trained with pneumonia boxes
-```
+- **Logistic Regression, Linear SVM, and Random Forest:** baseline classifiers trained on features extracted from resized images using PCA.
+- **CNN classifier:** predicts the image-level class from image pixels.
+- **CNN + CAM:** creates a class activation map and groups activated pixels using thresholding and depth-first search (DFS) to produce approximate bounding boxes.
+- **Faster R-CNN:** a supervised localization benchmark trained with pneumonia bounding boxes. The detector uses an ImageNet-pretrained MobileNetV3-Large backbone; the detector itself is trained on this project dataset.
 
-The data is split at the **image level** into 70% train, 20% validation, and 10% test (expected counts: 140/40/20). A fixed seed makes the split reproducible. The validation set is used for model/threshold selection; the test set is reserved for the final evaluation.
+Data is split at the image level. Validation data is used for model selection and CAM threshold selection, while the test set is reserved for final evaluation. The project reports classification metrics and localization Intersection over Union (IoU). The current localization score uses greedy one-to-one box matching per image; an image with an empty ground-truth set or no predicted boxes receives IoU 0. It is a project-specific localization metric, not object-detection mAP.
 
-The source reference project used U-Net lung segmentation, but this supplied dataset does not contain lung masks or a verified lung-segmentation checkpoint. U-Net code is retained as an optional extension; the default pipeline does not require it.
+## 3. Installation
 
-## Installation
+Use Python 3.10 or newer. From the repository root, create and activate a virtual environment.
 
-Use Python 3.10 or newer. From the repository root:
+**Windows (PowerShell):**
 
-```bash
+```powershell
 python -m venv .venv
-```
-
-Activate the environment, then install:
-
-```bash
+.\.venv\Scripts\Activate.ps1
 python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 ```
 
-If PyTorch cannot be installed for your particular OS/GPU with the generic requirement, use the official PyTorch installation selector to choose a compatible `torch`/`torchvision` pair, then install the remaining requirements.
+**macOS / Linux:**
 
-## Run from a clean state
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
+```
 
-This package intentionally excludes **previous model checkpoints, generated splits, old metrics, and generated figures**. The commands below will create fresh outputs so you can inspect them yourself.
+The requirements include PyTorch and torchvision. If installation fails or you need GPU support, install a compatible `torch` and `torchvision` pair for your operating system using the official PyTorch installation instructions, then install the remaining packages from `requirements.txt`. The first Faster R-CNN training run may download ImageNet-pretrained MobileNetV3 backbone weights, so internet access may be required.
 
-First validate the raw dataset and create the split files:
+## 4. Prepare the dataset
+
+After extracting the dataset into `train/`, run:
 
 ```bash
 python scripts/run_project.py --prepare-data
 ```
 
-Run the automated tests and syntax check:
+The command validates the COCO annotations, prepares image-level labels, checks image paths and bounding boxes, and creates reproducible train/validation/test split files under `data/splits/`.
+
+If your dataset is stored elsewhere, specify its path explicitly. For example:
 
 ```bash
-python -m pytest -q
-python -m compileall -q src scripts demo tests
+python scripts/run_project.py --prepare-data --data-dir "/path/to/train"
 ```
 
-Run the complete training and evaluation pipeline:
+The specified directory should contain both the image files and `_annotations.coco.json`, unless you also pass `--annotation-file` and/or `--image-dir`.
+
+## 5. Run the project
+
+To train the models and generate the evaluation artifacts in one command:
 
 ```bash
 python scripts/run_project.py --all
 ```
 
-Or run it one stage at a time:
+The full pipeline runs data preparation, baseline training, CNN training, CAM threshold selection, Faster R-CNN training, test evaluation, and result generation. Training can take a while on CPU.
+
+You can also run the stages separately:
 
 ```bash
 python scripts/run_project.py --prepare-data
@@ -101,52 +103,86 @@ python scripts/run_project.py --evaluate
 python scripts/run_project.py --generate-results
 ```
 
-Training the CNN and Faster R-CNN can take a while, especially on CPU. `--all` trains the project models from scratch, except that the Faster R-CNN backbone starts from ImageNet-pretrained weights, which are downloaded automatically on the first run (internet required).
+`--evaluate` evaluates the baselines, CNN + CAM, and Faster R-CNN on the held-out test split. `--evaluate-cam` is also available when you want to evaluate the CAM model separately.
 
-## Where fresh outputs will be written
+## 6. Run a single-image demo
 
-The first run creates these folders automatically:
-
-```text
-data/splits/       # parsed metadata and reproducible train/val/test CSVs
-models/             # freshly trained baselines, CNN and Faster R-CNN checkpoints
-results/metrics/    # metrics, histories, selected thresholds and per-image records
-results/tables/     # model comparison and per-image CSVs
-results/figures/    # training curves, confusion matrix, IoU charts and examples
-```
-
-These are intentionally absent from this clean package. `.gitignore` excludes generated models, split files, results, caches and the local dataset from normal Git commits.
-
-## Master notebook
-
-Open `notebooks/pneumonia_localization_master.ipynb` in Jupyter or VS Code and run its cells from top to bottom. It calls the same command-line stages described above. The notebook is shipped without saved execution outputs so its results come from your own run.
-
-## Run inference after training
-
-After `--all` has successfully trained the CNN, run:
+Run the full pipeline first so the CNN checkpoint exists. Then choose an image from `train/` and run:
 
 ```bash
-python demo/inference.py "train/<an-image-filename>.jpg" --output results/figures/demo_prediction.png
+python demo/inference.py "train/<image-filename>.jpg" --output results/figures/demo_prediction.png
 ```
 
-Replace the example path with an actual JPG filename from `train/`. The demo reports the predicted class and the model-derived Pneumonia probability; for positive predictions, it also produces CAM-based boxes. The confidence is the model's output, not a ground-truth annotation.
+Replace `<image-filename>.jpg` with the exact filename of a real image. The demo prints the predicted class, the model's pneumonia probability, and any predicted CAM boxes. It also saves a visualization to the requested output path. PNG, JPEG, and DICOM inputs are supported by the inference loader.
 
-## Notes about evaluation
+This command demonstrates **CNN + CAM inference**; it does not run Faster R-CNN inference.
 
-- Ground-truth class labels and pneumonia boxes come from `_annotations.coco.json`.
-- The dataset's labels do not provide ground-truth confidence scores; probabilities are produced by the trained classifier.
-- Classification metrics and localization IoU are written only after running the pipeline.
-- The dataset is small. A 20-image test set is suitable for demonstrating an educational workflow, not for strong statistical or clinical conclusions.
-- CAM is a weakly supervised localization heuristic; a heatmap box is not guaranteed to correspond to a true disease boundary.
+## 7. Tests and code checks
 
-## Main files
+With the required dataset in place, run:
+
+```bash
+python -m pytest -q
+python -m compileall -q src scripts demo tests
+```
+
+The COCO data tests need the dataset and annotation JSON. If those files are missing, the data-dependent tests or data-preparation step will fail.
+
+## 8. Results and output files
+
+The repository includes a saved set of metrics, tables, and figures from a previous experiment under `results/`. They are provided as a result snapshot; they are not proof that training has been freshly reproduced on the machine where the ZIP is extracted. Running the pipeline again updates the generated artifacts.
+
+Important output locations:
 
 ```text
-src/                    Data, preprocessing, model, CAM, box, metric and visualization code
-scripts/run_project.py  Reproducible pipeline CLI
-scripts/generate_final_artifacts.py  Generates fresh result tables and figures
-notebooks/              Master execution notebook
-demo/inference.py       Single-image inference demo
-tests/                  Automated correctness tests
-train/                  Local input dataset
+data/splits/                       # generated metadata and train/val/test CSVs
+models/                             # generated model checkpoints and baseline artifacts
+results/metrics/                    # metric summaries and training histories
+results/tables/                     # model comparison and per-image CSV files
+results/figures/                    # charts and qualitative localization examples
 ```
+
+### Saved result snapshot
+
+The saved evaluation uses a 20-image held-out test set. Its reported classification accuracies are:
+
+| Model | Test accuracy | Mean IoU across all test images |
+|---|---:|---:|
+| Logistic Regression | 65% | — |
+| SVM | 70% | — |
+| Random Forest | 65% | — |
+| CNN + CAM | 60% | 0.022 |
+| Faster R-CNN | 65% | 0.252 |
+
+For Faster R-CNN, the saved positive-image-only mean IoU is approximately 0.420. This is a different subset from the all-image mean IoU, so the two values should not be compared as if they used the same evaluation set. The test set is small: each image changes accuracy by 5 percentage points. The results are educational and should be interpreted cautiously.
+
+The saved Faster R-CNN test results also show high sensitivity (approximately 91.7%) and low specificity (25%) at the current prediction threshold. This means it detects most positive images but incorrectly flags many no-pneumonia images. Localization quality and image-level classification are different measures.
+
+## 9. Notebook
+
+The notebook walkthrough is available at:
+
+```text
+notebooks/pneumonia_localization_master.ipynb
+```
+
+Open it in Jupyter or VS Code. Run the cells in order after installing dependencies and placing the dataset in the expected location.
+
+## 10. Main files
+
+```text
+src/                                # data, preprocessing, models, CAM, boxes and metrics
+scripts/run_project.py              # command-line training/evaluation pipeline
+scripts/generate_final_artifacts.py  # generates result tables and figures
+notebooks/                          # notebook walkthrough
+demo/inference.py                   # CNN + CAM single-image demo
+tests/                              # automated tests
+train/                              # local dataset
+results/                            # saved experiment metrics, tables and figures
+```
+
+## 11. References
+
+1. Zhou, B. et al. “Learning Deep Features for Discriminative Localization.” CVPR, 2016. (Class Activation Mapping.)
+2. Ren, S. et al. “Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks.” NeurIPS, 2015.
+3. Supplied COCO-format chest X-ray dataset and annotation JSON.
